@@ -1,0 +1,19 @@
+[{
+  id: 4,
+  first_name: 'Quentin',
+  last_name: 'Tarantino',
+  email: 'qt@gmail.com',
+  avatar: 'quentin.jpg'
+},{
+  id: 5,
+  first_name: 'Beatrix',
+  last_name: 'Kiddo',
+  email: 'blackmamba@gmail.com',
+  avatar: 'uma.jpg'
+},{
+  id: 6,
+  first_name: 'Budd',
+  last_name: 'Kiddo',
+  email: 'rocky@gmail.com',
+  avatar: 'budd.jpg'
+}]

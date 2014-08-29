@@ -1,0 +1,19 @@
+{
+  "name": "gmail-angular",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gulp": "^3.8.7",
+    "gulp-autoprefixer": "0.0.9",
+    "gulp-coffee": "^2.1.2",
+    "gulp-jst": "^0.1.1",
+    "gulp-sass": "^0.7.3",
+    "gulp-util": "^3.0.0"
+  }
+}

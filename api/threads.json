@@ -1,0 +1,46 @@
+[{
+  id: 1,
+  messages: [{
+    id: 1,
+    read: true,
+    from: {
+      first_name: 'Beatrix',
+      last_name: 'Kiddo',
+      email: 'blackmamba@gmail.com'
+    }
+    to: [{
+      first_name: 'Mark'
+      last_Name: 'Brown'
+      email: 'markbrown4@gmail.com'
+    }],
+    cc: [],
+    bcc: [],
+    subject: 'joke?',
+    body: 'You still wanna hear my fox force five joke?'
+  },{
+    id: 2,
+    read: true,
+    from: 'Mark Brown <markbrown4@gmail.com>',
+    to: ['Beatrix Kiddo <blackmamba@gmail.com>'],
+    subject: 'RE: You still wanna hear my fox force five joke?',
+    body: "Sure, but I think I'm still a little too petrified to laugh."
+  }]
+},{
+  id: 2,
+  messages: [{
+    id: 3,
+    read: true,
+    from: {
+      first_name: 'Beatrix',
+      last_name: 'Kiddo',
+      email: 'blackmamba@gmail.com'
+    }
+    to: [{
+      first_name: 'Mark'
+      last_Name: 'Brown'
+      email: 'markbrown4@gmail.com'
+    }],
+    subject: 'Seen my movie yet?',
+    body: 'According to the show, she was the deadliest woman in the world with a knife.'
+  }]
+}]

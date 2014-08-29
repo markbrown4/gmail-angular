@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>nGmail</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/public/css/app.css">
+</head>
+<body>
+<div id="wrapper">
+  <div id="header">
+    <span id="logo"><img src="/public/images/logo.png"></span>
+    <img class="avatar" src="/public/images/avatars/me.jpg">
+    <form class="search">
+      <input name="query">
+      <button type="submit" class="primary-btn">
+        <span class="icon-search"></span>
+      </button>
+    </form>
+  </div>
+  <div id="sub-header">
+    <h1 class="app-name">Gmail</h1>
+    <div class="paging">
+      <strong>1-100</strong>
+      of
+      <strong>1,000</strong>
+    </div>
+    <div class="select-group btn">
+      <a href class="check"></a>
+      <img src="/public/images/icons/down.png">
+      <ul>
+        <li><a href>All</a></li>
+        <li><a href>None</a></li>
+        <li><a href>Read</a></li>
+        <li><a href>Unread</a></li>
+      </ul>
+    </div>
+    <div class="split-btn">
+      <a href class="btn"><img src="/public/images/icons/archive.png"></a>
+      <a href class="btn"><img src="/public/images/icons/spam.png"></a>
+      <a href class="btn"><img src="/public/images/icons/delete.png"></a>
+    </div>
+    <a href class="btn"><img src="/public/images/icons/refresh.png"></a>
+  </div>
+  <div id="nav">
+    <a href="/compose" class="compose">COMPOSE</a>
+    <ul>
+      <li class="active"><a href="/inbox">Inbox</a></li>
+      <li><a href="/sent">Sent Mail</a></li>
+      <li><a href="/drafts">Drafts</a></li>
+      <li><a href="/trash">Trash</a></li>
+    </ul>
+  </div>
+  <div id="content">
+    <ul id="inbox">
+      <li class="unread">
+        <a href>
+          <time>9:30 pm</time>
+          <span class="check"></span>
+          <span class="name">Beatrix Kiddo</span>
+          <span class="subject">Have you seen my movie yet?</span>
+          <span class="body">- According to the show, she was the deadliest woman in the world with a knife.</span>
+        </a>
+      </li>
+      <li>
+        <a href>
+          <time>Aug 15</time>
+          <span class="check"></span>
+          <span class="name">Budd, me (3)</span>
+          <span class="subject">That woman deserves her revenge</span>
+          <span class="body">- And we deserve to die.</span>
+        </a>
+      </li>
+    </ul>
+
+    <div id="thread">
+      <h1>Have you seen my movie yet?</h1>
+      <ul class="messages">
+        <li>
+          <div class="thread-tools">
+            <time>9:46 AM (14 minutes ago)</time>
+          </div>
+          <img class="avatar" src="/public/images/avatars/uma.jpg">
+          <div class="from">
+            <span class="name">Beatrix Kiddo</span>
+          </div>
+          <div class="body">According to the show, she was the deadliest woman in the world with a knife.</div>
+        </li>
+        <li class="active">
+          <div class="thread-tools">
+            <time>9:59 AM (1 minute ago)</time>
+            <div class="split-btn">
+              <a href class="btn"><img src="/public/images/icons/reply.png"></a>
+              <div class="select-group btn btn-mini">
+                <img src="/public/images/icons/down.png">
+                <ul class="align-right">
+                  <li><a href>Reply</a></li>
+                  <li><a href>Reply all</a></li>
+                  <li><a href>Forward</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <img class="avatar" src="/public/images/avatars/me.jpg">
+          <div class="from">
+            <span class="name">Mark Brown</span>
+            <span class="email">&lt;markbrown4@gmail.com&gt;</span>
+          </div>
+          <div class="to">to Beatrix</div>
+          <div class="body">Not yet!<br><br> But I'm seeing it tomorrow night :)</div>
+        </li>
+      </ul>
+      <div class="reply">
+        <img class="avatar" src="/public/images/avatars/me.jpg">
+        <div class="reply-box">
+          <p>Click here to <a href>Reply</a>, <a href>Reply to all</a> or <a href>Forward</a></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="compose">
+    <div class="header">
+      <a class="close">&times;</a>
+      <h2>New Message</h2>
+    </div>
+    <div>
+      <input placeholder="Recipients" name="recipients" class="full">
+      <div class="input">
+        <label>To</label>
+        <div class="fit">
+          <input name="to" class="full">
+        </div>
+      </div>
+      <div class="input">
+        <label>Cc</label>
+        <div class="fit">
+          <input name="cc" class="full">
+        </div>
+      </div>
+      <div class="input">
+        <label>Bcc</label>
+        <div class="fit">
+          <input name="ccc" class="full">
+        </div>
+      </div>
+      <div>
+        <label>From</label>
+        <a href class="bcc">Bcc</a>
+        <a href class="cc">Cc</a>
+        <div class="select-group from-address">
+          <span>Mark Brown &lt;markbrown4@gmail.com&gt;</span>
+          <img src="/public/images/icons/down.png">
+          <ul>
+            <li><a href>Mark Brown &lt;markbrown4@gmail.com&gt;</a></li>
+            <li><a href>Mark Brown &lt;mark@inspire9.com&gt;</a></li>
+            <li><a href>Mark Brown &lt;mark@adioso.com&gt;</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div>
+      <input name="subject" placeholder="Subject" class="full">
+    </div>
+    <div>
+      <textarea name="body" placeholder="Body"></textarea>
+    </div>
+    <div class="footer">
+      <input type="submit" value="Send" class="btn primary-btn">
+    </div>
+  </div>
+</div>
+<script src="/public/js/app.js"></script>
+</body>
+</html>

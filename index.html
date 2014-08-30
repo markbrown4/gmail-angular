@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="nGmail">
 <head>
   <title>nGmail</title>
   <meta charset="utf-8">
@@ -9,7 +9,14 @@
 <div id="wrapper">
   <div id="header">
     <span id="logo"><img src="/public/images/logo.png"></span>
-    <img class="avatar" src="/public/images/avatars/me.jpg">
+    <div class="select-group account-nav">
+      <img class="avatar" src="/public/images/avatars/me.jpg">
+      <ul class="align-right">
+        <li><a href>Mark Brown &lt;markbrown4@gmail.com&gt;</a></li>
+        <li><a href>Mark Brown &lt;mark@inspire9.com&gt;</a></li>
+        <li><a href>Mark Brown &lt;mark@adioso.com&gt;</a></li>
+      </ul>
+    </div>
     <form class="search">
       <input name="query">
       <button type="submit" class="primary-btn">
@@ -18,11 +25,11 @@
     </form>
   </div>
   <div id="sub-header">
-    <h1 class="app-name">Gmail</h1>
+    <h1 class="app-name"><span>n</span>Gmail</h1>
     <div class="paging">
-      <strong>1-100</strong>
+      <strong>1-2</strong>
       of
-      <strong>1,000</strong>
+      <strong>2</strong>
     </div>
     <div class="select-group btn">
       <a href class="check"></a>
@@ -51,28 +58,25 @@
     </ul>
   </div>
   <div id="content">
-    <ul id="inbox">
-      <li class="unread">
+
+    <ul id="threads" ng-controller="ThreadsController">
+      <li ng-repeat="thread in threads" ng-class="{ unread: thread.unread }">
         <a href>
-          <time>9:30 pm</time>
+          <time>{{ thread.last_message.created_at | smartDate }}</time>
           <span class="check"></span>
-          <span class="name">Beatrix Kiddo</span>
-          <span class="subject">Have you seen my movie yet?</span>
-          <span class="body">- According to the show, she was the deadliest woman in the world with a knife.</span>
-        </a>
-      </li>
-      <li>
-        <a href>
-          <time>Aug 15</time>
-          <span class="check"></span>
-          <span class="name">Budd, me (3)</span>
-          <span class="subject">That woman deserves her revenge</span>
-          <span class="body">- And we deserve to die.</span>
+          <span class="people">
+            <span ng-repeat="person in thread.participants">
+              <span class="name" ng-class="{ unread: person.unread }">{{ person | smartName : thread.message_count == 1 }}</span>{{ $last ? '': ', ' }}
+            </span>
+            <span ng-show="thread.message_count > 1">({{ thread.message_count }})</span>
+          </span>
+          <span class="subject">{{ thread.last_message.subject }}</span>
+          <span class="body">- {{ thread.last_message.snippet }}</span>
         </a>
       </li>
     </ul>
 
-    <div id="thread">
+    <div id="thread" style="display: none">
       <h1>Have you seen my movie yet?</h1>
       <ul class="messages">
         <li>
@@ -116,10 +120,8 @@
         </div>
       </div>
     </div>
-
   </div>
-
-  <div id="compose">
+  <div id="compose" style="display: none">
     <div class="header">
       <a class="close">&times;</a>
       <h2>New Message</h2>
@@ -151,7 +153,7 @@
         <div class="select-group from-address">
           <span>Mark Brown &lt;markbrown4@gmail.com&gt;</span>
           <img src="/public/images/icons/down.png">
-          <ul>
+          <ul class="align-right">
             <li><a href>Mark Brown &lt;markbrown4@gmail.com&gt;</a></li>
             <li><a href>Mark Brown &lt;mark@inspire9.com&gt;</a></li>
             <li><a href>Mark Brown &lt;mark@adioso.com&gt;</a></li>
@@ -170,6 +172,23 @@
     </div>
   </div>
 </div>
+<div class="flash">
+  <div class="inner">Sending...</div>
+</div>
+<script src="/bower_components/underscore/underscore.js"></script>
+<script src="/bower_components/angular/angular.js"></script>
 <script src="/public/js/app.js"></script>
+<script src="/public/js/controllers.js"></script>
+<script src="/public/js/directives.js"></script>
+<script src="/public/js/filters.js"></script>
+<script src="/public/js/modules.js"></script>
+<script src="/public/js/services.js"></script>
+<script>
+window.currentUser = {
+  email: 'markbrown4@gmail.com',
+  first_name: 'Mark',
+  last_name: 'Brown'
+}
+</script>
 </body>
 </html>

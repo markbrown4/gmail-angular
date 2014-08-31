@@ -189,55 +189,55 @@
     </div>
 
   </div>
-  <div id="compose" style="display: none">
-    <div class="header">
-      <a class="close">&times;</a>
-      <h2>New Message</h2>
+</div>
+<div id="compose" style="display: none">
+  <div class="header">
+    <a class="close">&times;</a>
+    <h2>New Message</h2>
+  </div>
+  <div>
+    <input placeholder="Recipients" name="recipients" class="full">
+    <div class="input">
+      <label>To</label>
+      <div class="fit">
+        <input name="to" class="full">
+      </div>
     </div>
-    <div>
-      <input placeholder="Recipients" name="recipients" class="full">
-      <div class="input">
-        <label>To</label>
-        <div class="fit">
-          <input name="to" class="full">
-        </div>
+    <div class="input">
+      <label>Cc</label>
+      <div class="fit">
+        <input name="cc" class="full">
       </div>
-      <div class="input">
-        <label>Cc</label>
-        <div class="fit">
-          <input name="cc" class="full">
-        </div>
-      </div>
-      <div class="input">
-        <label>Bcc</label>
-        <div class="fit">
-          <input name="ccc" class="full">
-        </div>
-      </div>
-      <div>
-        <label>From</label>
-        <a href class="bcc">Bcc</a>
-        <a href class="cc">Cc</a>
-        <div class="drop-down from-address">
-          <span>Mark Brown &lt;markbrown4@gmail.com&gt;</span>
-          <img src="images/icons/down.png">
-          <ul class="align-right">
-            <li><a href>Mark Brown &lt;markbrown4@gmail.com&gt;</a></li>
-            <li><a href>Mark Brown &lt;mark@inspire9.com&gt;</a></li>
-            <li><a href>Mark Brown &lt;mark@adioso.com&gt;</a></li>
-      iv>
-        </drop-down>
+    </div>
+    <div class="input">
+      <label>Bcc</label>
+      <div class="fit">
+        <input name="ccc" class="full">
       </div>
     </div>
     <div>
-      <input name="subject" placeholder="Subject" class="full">
+      <label>From</label>
+      <a href class="bcc">Bcc</a>
+      <a href class="cc">Cc</a>
+      <div class="drop-down from-address">
+        <span>Mark Brown &lt;markbrown4@gmail.com&gt;</span>
+        <img src="images/icons/down.png">
+        <ul class="align-right">
+          <li><a href>Mark Brown &lt;markbrown4@gmail.com&gt;</a></li>
+          <li><a href>Mark Brown &lt;mark@inspire9.com&gt;</a></li>
+          <li><a href>Mark Brown &lt;mark@adioso.com&gt;</a></li>
+        </ul>
+      </div>
     </div>
-    <div>
-      <textarea name="body" placeholder="Body"></textarea>
-    </div>
-    <div class="footer">
-      <input type="submit" value="Send" class="btn primary-btn">
-    </div>
+  </div>
+  <div>
+    <input name="subject" placeholder="Subject" class="full">
+  </div>
+  <div>
+    <textarea name="body" placeholder="Body"></textarea>
+  </div>
+  <div class="footer">
+    <input type="submit" value="Send" class="btn primary-btn">
   </div>
 </div>
 <div class="flash">
@@ -251,7 +251,6 @@
 <script src="js/controllers.js"></script>
 <script src="js/directives.js"></script>
 <script src="js/filters.js"></script>
-<script src="js/modules.js"></script>
 <script src="js/services.js"></script>
 </body>
 </html>

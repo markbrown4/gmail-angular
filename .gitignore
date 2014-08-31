@@ -1,4 +1,4 @@
-bower_components
-node_modules
-public/js/
-public/css/
+node_modules/
+app/js/
+app/css/
+app/bower_components/

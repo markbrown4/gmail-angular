@@ -3,17 +3,21 @@
   "version": "0.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "gulp": "^3.8.7",
-    "gulp-autoprefixer": "0.0.9",
-    "gulp-coffee": "^2.1.2",
-    "gulp-jst": "^0.1.1",
-    "gulp-sass": "^0.7.3",
-    "gulp-util": "^3.0.0"
+    "bower": "*",
+    "gulp": "*",
+    "gulp-util": "*",
+    "gulp-coffee": "*",
+    "gulp-sass": "*",
+    "gulp-autoprefixer": "*",
+    "http-server": "*"
+  },
+  "scripts": {
+    "postinstall": "bower install",
+    "prestart": "npm install",
+    "watch": "gulp",
+    "start": "http-server ./app -a 0.0.0.0 -p 8000"
   }
 }

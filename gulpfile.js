@@ -2,18 +2,18 @@
 
 var gulp = require('gulp');
 var gutil = require('gulp-util');
+var coffee = require('gulp-coffee');
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
-var coffee = require('gulp-coffee');
 
 var paths = {
   styles: {
-    src:  'assets/scss/**/*.scss',
-    dest: 'public/css'
+    src:  'app/scss/**/*.scss',
+    dest: 'app/css'
   },
   scripts: {
-    src:  'assets/coffee/**/*.coffee',
-    dest: 'public/js'
+    src:  'app/coffee/**/*.coffee',
+    dest: 'app/js'
   }
 };
 

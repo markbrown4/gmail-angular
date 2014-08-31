@@ -5,9 +5,9 @@
       <div class="thread-tools">
         <time>{{ message.created_at | smartDate }} ({{ message.created_at | timeAgo }})</time>
         <div class="split-btn" ng-show="message.active">
-          <a href class="btn"><img src="/public/images/icons/reply.png"></a>
+          <a href class="btn"><img src="images/icons/reply.png"></a>
           <drop-down class="drop-down btn btn-mini">
-            <img src="/public/images/icons/down.png">
+            <img src="images/icons/down.png">
             <ul class="align-right">
               <li><a href>Reply</a></li>
               <li><a href>Reply all</a></li>
@@ -16,7 +16,7 @@
           </drop-down>
         </div>
       </div>
-      <img class="avatar" ng-src="/public/images/avatars/{{ message.from.avatar }}">
+      <img class="avatar" ng-src="images/avatars/{{ message.from.avatar }}">
       <div class="from">
         <span class="name">{{ message.from.first_name }} {{ message.from.last_name }}</span>
         <span class="email" ng-show="message.active">&lt;{{ message.from.email }}&gt;</span>
@@ -28,7 +28,7 @@
     </li>
   </ul>
   <div class="reply">
-    <img class="avatar" src="/public/images/avatars/{{ current_user.avatar }}">
+    <img class="avatar" src="images/avatars/{{ current_user.avatar }}">
     <div class="reply-box">
       <p>Click here to <a href>Reply</a>, <a href>Reply to all</a> or <a href>Forward</a></p>
     </div>

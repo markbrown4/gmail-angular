@@ -94,7 +94,7 @@ li {
     width: 15px;
     height: 16px;
     margin-top: -3px;
-    background: url('/public/images/icons/search.png') 50% 50% no-repeat;
+    background: url('../images/icons/search.png') 50% 50% no-repeat;
   }
 }
 #sub-header {
@@ -190,7 +190,7 @@ li {
     &:after {
       content: '';
       position: absolute;
-      background: url("/public/images/icons/checkmark.png");
+      background: url("../images/icons/checkmark.png");
       height: 21px;
       width: 21px;
       top: -5px;

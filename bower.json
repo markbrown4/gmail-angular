@@ -13,9 +13,8 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.2.23",
-    "jquery": "~2.1.1",
     "underscore": "~1.7.0",
+    "angular": "~1.2.23",
     "angular-route": "~1.2.23",
     "angular-resource": "~1.2.23",
     "angular-sanitize": "~1.2.23"

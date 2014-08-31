@@ -1,16 +1,12 @@
 
-app.controller 'ThreadsController', ($scope, $http)->
-  $http.get('/api/threads.json').success (data)->
-    $scope.threads = data
+app.controller 'ThreadsController', ($scope, Thread)->
+  $scope.threads = Thread.query()
 
-app.controller 'ThreadController', ($scope, $routeParams, $http)->
-  lastMessage = null
-
-  $http.get("/api/threads/#{ $routeParams.id }.json").success (data)->
-    $scope.thread = data
-    lastMessage = _.last($scope.thread.messages)
-    lastMessage.active = true
+app.controller 'ThreadController', ($scope, $routeParams, Thread)->
+  $scope.thread = Thread.get { id: $routeParams.id }, (thread)->
+    $scope.lastMessage = thread.messages[thread.messages.length-1]
+    $scope.lastMessage.active = true
 
   $scope.toggleActive = (message)->
-    unless message == lastMessage
+    unless message == $scope.lastMessage
       message.active = !message.active

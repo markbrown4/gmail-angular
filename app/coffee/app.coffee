@@ -1,5 +1,5 @@
 
-window.app = angular.module('nGmail', ['ngRoute', 'ngSanitize'])
+window.app = angular.module('nGmail', ['ngRoute', 'ngSanitize', 'ngResource'])
 
 app.config ($routeProvider)->
   $routeProvider

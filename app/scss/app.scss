@@ -35,6 +35,7 @@ li {
   margin: 0;
   padding: 0;
 }
+
 .flash {
   position: fixed;
   top: 46px;
@@ -185,17 +186,27 @@ li {
   &:hover {
     box-shadow: inset 0 2px 2px rgba(#000, .1);
   }
-  .selected & {
+  &:after {
+    display: none;
+    content: '';
+    position: absolute;
+    background: url("../images/icons/checkmark-partial.png");
+    height: 21px;
+    width: 21px;
+    top: -5px;
+    left: -5px;
+  }
+  &.some-selected, &.all-selected, .selected & {
     background: rgba(#fff, .7);
     &:after {
-      content: '';
-      position: absolute;
-      background: url("../images/icons/checkmark.png");
-      height: 21px;
-      width: 21px;
-      top: -5px;
-      left: -5px;
+      display: block;
     }
+  }
+  .some-selected &:after {
+    background: url("../images/icons/checkmark-partial.png");
+  }
+  .selected &:after, &.all-selected:after {
+    background: url("../images/icons/checkmark.png");
   }
 }
 .drop-down {
@@ -236,6 +247,24 @@ li {
 .paging {
   float: right;
   line-height: 32px;
+  .split-btn {
+    float: right;
+    margin: 0 0 0 10px;
+    line-height: 1.2;
+  }
+  .btn {
+    img { opacity: .5 }
+    &:hover {
+      img { opacity: .9 }
+    }
+  }
+  .inactive {
+    cursor: default;
+    img { opacity: .3 }
+    &:hover {
+      img { opacity: .3 }
+    }
+  }
 }
 #logo, #nav {
   float: left;

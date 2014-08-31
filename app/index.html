@@ -7,7 +7,7 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-<div id="wrapper">
+<div id="wrapper" ng-controller="ThreadsController">
   <div id="header">
     <span id="logo"><img src="images/logo.png"></span>
     <drop-down class="drop-down account-nav">
@@ -19,7 +19,7 @@
       </ul>
     </drop-down>
     <form class="search">
-      <input name="query">
+      <input name="query" ng-model="query">
       <button type="submit" class="primary-btn">
         <span class="icon-search"></span>
       </button>
@@ -28,27 +28,31 @@
   <div id="sub-header">
     <h1 class="app-name"><span>n</span>Gmail</h1>
     <div class="paging">
-      <strong>1-2</strong>
+      <strong>{{ page.from == page.to ? page.from : page.from + '-'+ page.to }}</strong>
       of
-      <strong>2</strong>
+      <strong>{{ page.count }}</strong>
+      <div class="split-btn">
+        <a href class="btn btn-mini" title="Previous" ng-class="{ inactive: page.from == 1 }"><img src="images/icons/prev.png"></a>
+        <a href class="btn btn-mini" title="Next" ng-class="{ inactive: page.to == page.count }"><img src="images/icons/next.png"></a>
+      </div>
     </div>
-    <a href="#/inbox" class="btn" title="Back to Inbox"><img src="images/icons/back.png"></a>
-    <drop-down class="drop-down btn">
-      <a href class="check"></a>
+    <a href="#/inbox" class="btn" title="Back to Inbox" ng-hide="isRouteActive('/inbox')"><img src="images/icons/back.png"></a>
+    <drop-down class="drop-down btn" ng-show="isRouteActive('/inbox')">
+      <a href class="check" ng-click="selectToggle()" ng-class="{ 'all-selected': allSelected(), 'some-selected': someSelected() }" stop-event></a>
       <img src="images/icons/down.png">
       <ul>
-        <li><a href>All</a></li>
-        <li><a href>None</a></li>
-        <li><a href>Read</a></li>
-        <li><a href>Unread</a></li>
+        <li><a href ng-click="selectAll()">All</a></li>
+        <li><a href ng-click="selectNone()">None</a></li>
+        <li><a href ng-click="selectRead()">Read</a></li>
+        <li><a href ng-click="selectUnread()">Unread</a></li>
       </ul>
     </drop-down>
-    <div class="split-btn">
+    <div class="split-btn" ng-show="someSelected() || !isRouteActive('/inbox')">
       <a href class="btn" title="Archive"><img src="images/icons/archive.png"></a>
       <a href class="btn" title="Report Spam"><img src="images/icons/spam.png"></a>
       <a href class="btn" title="Delete"><img src="images/icons/delete.png"></a>
     </div>
-    <a href class="btn"><img src="images/icons/refresh.png"></a>
+    <a href class="btn" ng-show="isRouteActive('/inbox') && noneSelected()"><img src="images/icons/refresh.png"></a>
   </div>
   <div id="nav">
     <a href="#/compose" class="compose">COMPOSE</a>
@@ -60,55 +64,55 @@
     </ul>
   </div>
   <div id="content" ng-view></div>
-  <div id="compose" style="display: none">
-    <div class="header">
-      <a class="close">&times;</a>
-      <h2>New Message</h2>
+</div>
+<div id="compose" style="display: none">
+  <div class="header">
+    <a class="close">&times;</a>
+    <h2>New Message</h2>
+  </div>
+  <div>
+    <input placeholder="Recipients" name="recipients" class="full">
+    <div class="input">
+      <label>To</label>
+      <div class="fit">
+        <input name="to" class="full">
+      </div>
     </div>
-    <div>
-      <input placeholder="Recipients" name="recipients" class="full">
-      <div class="input">
-        <label>To</label>
-        <div class="fit">
-          <input name="to" class="full">
-        </div>
+    <div class="input">
+      <label>Cc</label>
+      <div class="fit">
+        <input name="cc" class="full">
       </div>
-      <div class="input">
-        <label>Cc</label>
-        <div class="fit">
-          <input name="cc" class="full">
-        </div>
-      </div>
-      <div class="input">
-        <label>Bcc</label>
-        <div class="fit">
-          <input name="ccc" class="full">
-        </div>
-      </div>
-      <div>
-        <label>From</label>
-        <a href class="bcc">Bcc</a>
-        <a href class="cc">Cc</a>
-        <drop-down class="drop-down from-address">
-          <span>Mark Brown &lt;markbrown4@gmail.com&gt;</span>
-          <img src="images/icons/down.png">
-          <ul class="align-right">
-            <li><a href>Mark Brown &lt;markbrown4@gmail.com&gt;</a></li>
-            <li><a href>Mark Brown &lt;mark@inspire9.com&gt;</a></li>
-            <li><a href>Mark Brown &lt;mark@adioso.com&gt;</a></li>
-          </ul>
-        </drop-down>
+    </div>
+    <div class="input">
+      <label>Bcc</label>
+      <div class="fit">
+        <input name="ccc" class="full">
       </div>
     </div>
     <div>
-      <input name="subject" placeholder="Subject" class="full">
+      <label>From</label>
+      <a href class="bcc">Bcc</a>
+      <a href class="cc">Cc</a>
+      <drop-down class="drop-down from-address">
+        <span>Mark Brown &lt;markbrown4@gmail.com&gt;</span>
+        <img src="images/icons/down.png">
+        <ul class="align-right">
+          <li><a href>Mark Brown &lt;markbrown4@gmail.com&gt;</a></li>
+          <li><a href>Mark Brown &lt;mark@inspire9.com&gt;</a></li>
+          <li><a href>Mark Brown &lt;mark@adioso.com&gt;</a></li>
+        </ul>
+      </drop-down>
     </div>
-    <div>
-      <textarea name="body" placeholder="Body"></textarea>
-    </div>
-    <div class="footer">
-      <input type="submit" value="Send" class="btn primary-btn">
-    </div>
+  </div>
+  <div>
+    <input name="subject" placeholder="Subject" class="full">
+  </div>
+  <div>
+    <textarea name="body" placeholder="Body"></textarea>
+  </div>
+  <div class="footer">
+    <input type="submit" value="Send" class="btn primary-btn">
   </div>
 </div>
 <div class="flash">

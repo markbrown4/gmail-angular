@@ -28,7 +28,7 @@ app.filter 'timeAgo', ($filter)->
     for unit in units
       if diff < unit.limit || !unit.limit
         diff =  Math.floor(diff / unit.in_seconds)
-        return "#{diff} #{unit.name}#{ 's' if diff > 1 } ago"
+        return "#{diff} #{unit.name}#{ if diff > 1 then 's' else '' } ago"
 
 app.filter 'smartName', ->
   (person, fullName=true)->

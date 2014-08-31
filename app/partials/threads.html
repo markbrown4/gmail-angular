@@ -1,5 +1,5 @@
-<ul id="threads" ng-controller="ThreadsController">
-  <li ng-repeat="thread in threads" ng-class="{ unread: thread.unread, selected: thread.selected }">
+<ul id="threads">
+  <li ng-repeat="thread in threads | filter : query" ng-class="{ unread: thread.unread, selected: thread.selected }">
     <a href="#/threads/{{ thread.id }}">
       <time>{{ thread.last_message.created_at | smartDate }}</time>
       <span class="check" ng-click="thread.selected = !thread.selected" stop-event></span>

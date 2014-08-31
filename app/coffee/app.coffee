@@ -5,7 +5,6 @@ app.config ($routeProvider)->
   $routeProvider
     .when '/inbox',
       templateUrl: 'partials/threads.html'
-      controller: 'ThreadsController'
     .when '/threads/:id',
       templateUrl: 'partials/thread.html'
       controller: 'ThreadController'

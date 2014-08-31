@@ -1,5 +1,19 @@
 [
   {
+    "id": 2,
+    "email": "mark@inspire9.com",
+    "first_name": "Mark",
+    "last_name": "Brown",
+    "avatar": "me.jpg"
+  },
+  {
+    "id": 3,
+    "email": "mark@adioso.com",
+    "first_name": "Mark",
+    "last_name": "Brown",
+    "avatar": "me.jpg"
+  },
+  {
     "id": 4,
     "email": "qt@gmail.com",
     "first_name": "Quentin",
@@ -15,7 +29,7 @@
   },
   {
     "id": 6,
-    "email": "rocky@gmail.com",
+    "email": "budlight@gmail.com",
     "first_name": "Budd",
     "last_name": "Kiddo",
     "avatar": "budd.jpg"

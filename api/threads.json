@@ -1,6 +1,6 @@
 [
   {
-    "id": 1,
+    "id": 3,
     "message_count": 1,
     "unread": true,
     "participants": [
@@ -36,12 +36,12 @@
     ],
     "last_message": {
       "subject": "RE: Kiddo",
-      "snippet": "That woman deserves her revenge, and we deserve to die.",
+      "snippet": "That woman, deserves her revenge and... We deserve to die. But then again, so does she. So, I guess we'll just see. Won't we?",
       "created_at": 1409068800000
     }
   },
   {
-    "id": 3,
+    "id": 1,
     "message_count": 2,
     "unread": false,
     "participants": [
@@ -57,8 +57,8 @@
       }
     ],
     "last_message": {
-      "subject": "RE: Have you seen my movie?",
-      "snippet": "I haven't yet! But I'm seeing it on the weekend :)",
+      "subject": "RE: Bill",
+      "snippet": "You must have big rats if you need Hattori Hanzo's steel.",
       "created_at": 1409068800000
     }
   }

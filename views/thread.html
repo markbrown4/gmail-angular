@@ -1,0 +1,36 @@
+<div id="thread">
+  <h1>{{ thread.messages[0].subject }}</h1>
+  <ul class="messages">
+    <li ng-repeat="message in thread.messages" ng-class="{ active : message.active }" ng-click="toggleActive(message)">
+      <div class="thread-tools">
+        <time>{{ message.created_at | smartDate }} ({{ message.created_at | timeAgo }})</time>
+        <div class="split-btn" ng-show="message.active">
+          <a href class="btn"><img src="/public/images/icons/reply.png"></a>
+          <drop-down class="drop-down btn btn-mini">
+            <img src="/public/images/icons/down.png">
+            <ul class="align-right">
+              <li><a href>Reply</a></li>
+              <li><a href>Reply all</a></li>
+              <li><a href>Forward</a></li>
+            </ul>
+          </drop-down>
+        </div>
+      </div>
+      <img class="avatar" ng-src="/public/images/avatars/{{ message.from.avatar }}">
+      <div class="from">
+        <span class="name">{{ message.from.first_name }} {{ message.from.last_name }}</span>
+        <span class="email" ng-show="message.active">&lt;{{ message.from.email }}&gt;</span>
+      </div>
+      <div class="to" ng-show="message.active">to
+        <span ng-repeat="person in message.to">{{ person | smartName : false }}{{ $last ? '': ', ' }}</span>
+      </div>
+      <div class="body" ng-bind-html="message.active ? message.body : message.snippet"></div>
+    </li>
+  </ul>
+  <div class="reply">
+    <img class="avatar" src="/public/images/avatars/{{ current_user.avatar }}">
+    <div class="reply-box">
+      <p>Click here to <a href>Reply</a>, <a href>Reply to all</a> or <a href>Forward</a></p>
+    </div>
+  </div>
+</div>

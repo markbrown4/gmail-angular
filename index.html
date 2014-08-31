@@ -4,19 +4,20 @@
   <title>nGmail</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="/public/css/app.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
 </head>
 <body>
 <div id="wrapper">
   <div id="header">
     <span id="logo"><img src="/public/images/logo.png"></span>
-    <div class="select-group account-nav">
+    <drop-down class="drop-down account-nav">
       <img class="avatar" src="/public/images/avatars/me.jpg">
       <ul class="align-right">
         <li><a href>Mark Brown &lt;markbrown4@gmail.com&gt;</a></li>
         <li><a href>Mark Brown &lt;mark@inspire9.com&gt;</a></li>
         <li><a href>Mark Brown &lt;mark@adioso.com&gt;</a></li>
       </ul>
-    </div>
+    </drop-down>
     <form class="search">
       <input name="query">
       <button type="submit" class="primary-btn">
@@ -31,7 +32,8 @@
       of
       <strong>2</strong>
     </div>
-    <div class="select-group btn">
+    <a href="#/inbox" class="btn" title="Back to Inbox"><img src="/public/images/icons/back.png"></a>
+    <drop-down class="drop-down btn">
       <a href class="check"></a>
       <img src="/public/images/icons/down.png">
       <ul>
@@ -40,87 +42,24 @@
         <li><a href>Read</a></li>
         <li><a href>Unread</a></li>
       </ul>
-    </div>
+    </drop-down>
     <div class="split-btn">
-      <a href class="btn"><img src="/public/images/icons/archive.png"></a>
-      <a href class="btn"><img src="/public/images/icons/spam.png"></a>
-      <a href class="btn"><img src="/public/images/icons/delete.png"></a>
+      <a href class="btn" title="Archive"><img src="/public/images/icons/archive.png"></a>
+      <a href class="btn" title="Report Spam"><img src="/public/images/icons/spam.png"></a>
+      <a href class="btn" title="Delete"><img src="/public/images/icons/delete.png"></a>
     </div>
     <a href class="btn"><img src="/public/images/icons/refresh.png"></a>
   </div>
   <div id="nav">
-    <a href="/compose" class="compose">COMPOSE</a>
+    <a href="#/compose" class="compose">COMPOSE</a>
     <ul>
-      <li class="active"><a href="/inbox">Inbox</a></li>
-      <li><a href="/sent">Sent Mail</a></li>
-      <li><a href="/drafts">Drafts</a></li>
-      <li><a href="/trash">Trash</a></li>
+      <li class="active"><a href="#/inbox">Inbox</a></li>
+      <li><a href="#/sent">Sent Mail</a></li>
+      <li><a href="#/drafts">Drafts</a></li>
+      <li><a href="#/trash">Trash</a></li>
     </ul>
   </div>
-  <div id="content">
-
-    <ul id="threads" ng-controller="ThreadsController">
-      <li ng-repeat="thread in threads" ng-class="{ unread: thread.unread }">
-        <a href>
-          <time>{{ thread.last_message.created_at | smartDate }}</time>
-          <span class="check"></span>
-          <span class="people">
-            <span ng-repeat="person in thread.participants">
-              <span class="name" ng-class="{ unread: person.unread }">{{ person | smartName : thread.message_count == 1 }}</span>{{ $last ? '': ', ' }}
-            </span>
-            <span ng-show="thread.message_count > 1">({{ thread.message_count }})</span>
-          </span>
-          <span class="subject">{{ thread.last_message.subject }}</span>
-          <span class="body">- {{ thread.last_message.snippet }}</span>
-        </a>
-      </li>
-    </ul>
-
-    <div id="thread" style="display: none">
-      <h1>Have you seen my movie yet?</h1>
-      <ul class="messages">
-        <li>
-          <div class="thread-tools">
-            <time>9:46 AM (14 minutes ago)</time>
-          </div>
-          <img class="avatar" src="/public/images/avatars/uma.jpg">
-          <div class="from">
-            <span class="name">Beatrix Kiddo</span>
-          </div>
-          <div class="body">According to the show, she was the deadliest woman in the world with a knife.</div>
-        </li>
-        <li class="active">
-          <div class="thread-tools">
-            <time>9:59 AM (1 minute ago)</time>
-            <div class="split-btn">
-              <a href class="btn"><img src="/public/images/icons/reply.png"></a>
-              <div class="select-group btn btn-mini">
-                <img src="/public/images/icons/down.png">
-                <ul class="align-right">
-                  <li><a href>Reply</a></li>
-                  <li><a href>Reply all</a></li>
-                  <li><a href>Forward</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <img class="avatar" src="/public/images/avatars/me.jpg">
-          <div class="from">
-            <span class="name">Mark Brown</span>
-            <span class="email">&lt;markbrown4@gmail.com&gt;</span>
-          </div>
-          <div class="to">to Beatrix</div>
-          <div class="body">Not yet!<br><br> But I'm seeing it tomorrow night :)</div>
-        </li>
-      </ul>
-      <div class="reply">
-        <img class="avatar" src="/public/images/avatars/me.jpg">
-        <div class="reply-box">
-          <p>Click here to <a href>Reply</a>, <a href>Reply to all</a> or <a href>Forward</a></p>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div id="content" ng-view></div>
   <div id="compose" style="display: none">
     <div class="header">
       <a class="close">&times;</a>
@@ -150,7 +89,7 @@
         <label>From</label>
         <a href class="bcc">Bcc</a>
         <a href class="cc">Cc</a>
-        <div class="select-group from-address">
+        <drop-down class="drop-down from-address">
           <span>Mark Brown &lt;markbrown4@gmail.com&gt;</span>
           <img src="/public/images/icons/down.png">
           <ul class="align-right">
@@ -158,7 +97,7 @@
             <li><a href>Mark Brown &lt;mark@inspire9.com&gt;</a></li>
             <li><a href>Mark Brown &lt;mark@adioso.com&gt;</a></li>
           </ul>
-        </div>
+        </drop-down>
       </div>
     </div>
     <div>
@@ -177,6 +116,9 @@
 </div>
 <script src="/bower_components/underscore/underscore.js"></script>
 <script src="/bower_components/angular/angular.js"></script>
+<script src="/bower_components/angular-route/angular-route.js"></script>
+<script src="/bower_components/angular-resource/angular-resource.js"></script>
+<script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
 <script src="/public/js/app.js"></script>
 <script src="/public/js/controllers.js"></script>
 <script src="/public/js/directives.js"></script>
@@ -187,7 +129,8 @@
 window.currentUser = {
   email: 'markbrown4@gmail.com',
   first_name: 'Mark',
-  last_name: 'Brown'
+  last_name: 'Brown',
+  avatar: 'me.jpg'
 }
 </script>
 </body>

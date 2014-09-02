@@ -1,9 +1,8 @@
 
-app.controller 'ThreadsController', ($scope, Thread, $location, NewMessage)->
+app.controller 'ThreadsController', ($scope, Thread, $location)->
   $scope.threads = []
   Thread.query (threads)->
     $scope.threads = threads
-    $scope.newMessage = NewMessage
     $scope.page =
       from: 1
       to: threads.length
@@ -61,8 +60,23 @@ app.controller 'ThreadController', ($scope, $routeParams, Thread)->
     unless message == $scope.lastMessage
       message.active = !message.active
 
-app.factory 'NewMessage', ->
-  composing: false
+app.controller 'ComposeController', ($scope, AppState, $timeout)->
+  @reset = ->
+    $scope.active_section = 'to'
+    $scope.message =
+      from: currentAccounts[0]
 
-app.controller 'NewMessageController', ($scope, NewMessage)->
-  $scope.newMessage = NewMessage
+  @reset()
+
+  $scope.focusSection = (section)->
+    $scope.active_section = section
+    $scope.$broadcast "#{section}Focused"
+
+  $scope.send = =>
+    AppState.composing = false
+    @reset()
+    AppState.flash = 'Sending...'
+    $timeout ->
+      AppState.flash = ''
+    , 1000
+

@@ -38,3 +38,7 @@ app.filter 'smartName', ->
       "#{person.first_name} #{person.last_name}".trim()
     else
       person.first_name
+
+app.filter 'nameAndEmail', ->
+  (person)->
+    "#{ person.first_name } #{ person.last_name } <#{ person.email }>"

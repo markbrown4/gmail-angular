@@ -11,5 +11,7 @@ app.config ($routeProvider)->
     .otherwise
       redirectTo: '/inbox'
 
-app.run ($rootScope)->
+app.run ($rootScope, AppState)->
   $rootScope.current_user = currentUser
+  $rootScope.current_accounts = currentAccounts
+  $rootScope.app_state = AppState

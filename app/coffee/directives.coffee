@@ -19,3 +19,4 @@ app.directive "dropDown", ->
       angular.element(this).toggleClass 'active'
 
     return this
+

@@ -11,11 +11,9 @@
   <div id="header">
     <span id="logo"><img src="images/logo.png"></span>
     <drop-down class="drop-down account-nav">
-      <img class="avatar" src="images/avatars/me.jpg">
+      <img class="avatar" ng-src="images/avatars/{{ current_accounts[0].avatar }}">
       <ul class="align-right">
-        <li><a href>Mark Brown &lt;markbrown4@gmail.com&gt;</a></li>
-        <li><a href>Mark Brown &lt;mark@inspire9.com&gt;</a></li>
-        <li><a href>Mark Brown &lt;mark@adioso.com&gt;</a></li>
+        <li ng-repeat="account in current_accounts"><a href>{{ account | nameAndEmail }}</a></li>
       </ul>
     </drop-down>
     <form class="search">
@@ -55,7 +53,7 @@
     <a href class="btn" ng-show="isRouteActive('/inbox') && noneSelected()"><img src="images/icons/refresh.png"></a>
   </div>
   <div id="nav">
-    <a href class="compose" ng-click="newMessage.composing = true">COMPOSE</a>
+    <a href class="compose" ng-click="app_state.composing = true">COMPOSE</a>
     <ul>
       <li class="active"><a href="#/inbox">Inbox</a></li>
       <li><a href="#/sent">Sent Mail</a></li>
@@ -65,58 +63,58 @@
   </div>
   <div id="content" ng-view></div>
 </div>
-<div id="compose" ng-controller="NewMessageController" ng-show="newMessage.composing">
+<div id="compose" ng-controller="ComposeController" ng-show="app_state.composing">
   <div class="header">
-    <a class="close" ng-click="newMessage.composing = false">&times;</a>
+    <a class="close" ng-click="app_state.composing = false">&times;</a>
     <h2>New Message</h2>
   </div>
   <div>
-    <input placeholder="Recipients" name="recipients" class="full">
-    <div class="input">
+    <div ng-hide="active_section == 'to'">
+      <input placeholder="Recipients" name="recipients" class="full" ng-focus="focusSection('to')" ng-model="message.to">
+    </div>
+    <div class="input" ng-show="active_section == 'to'">
       <label>To</label>
       <div class="fit">
-        <input name="to" class="full">
+        <input name="to" class="full" ng-model="message.to">
       </div>
     </div>
-    <div class="input">
+    <div class="input" ng-show="cc_active">
       <label>Cc</label>
       <div class="fit">
-        <input name="cc" class="full">
+        <input name="cc" class="full" ng-model="message.cc">
       </div>
     </div>
-    <div class="input">
+    <div class="input" ng-show="bcc_active">
       <label>Bcc</label>
       <div class="fit">
-        <input name="ccc" class="full">
+        <input name="bcc" class="full" ng-model="message.bcc">
       </div>
     </div>
-    <div>
+    <div ng-show="active_section == 'to'">
       <label>From</label>
-      <a href class="bcc">Bcc</a>
-      <a href class="cc">Cc</a>
+      <a href class="bcc" ng-click="bcc_active = true" ng-hide="bcc_active">Bcc</a>
+      <a href class="cc" ng-click="cc_active = true" ng-hide="cc_active">Cc</a>
       <drop-down class="drop-down from-address">
-        <span>Mark Brown &lt;markbrown4@gmail.com&gt;</span>
+        <span>{{ message.from | nameAndEmail }}</span>
         <img src="images/icons/down.png">
         <ul class="align-right">
-          <li><a href>Mark Brown &lt;markbrown4@gmail.com&gt;</a></li>
-          <li><a href>Mark Brown &lt;mark@inspire9.com&gt;</a></li>
-          <li><a href>Mark Brown &lt;mark@adioso.com&gt;</a></li>
+          <li ng-repeat="account in current_accounts"><a href ng-click="message.from = account">{{ account | nameAndEmail }}</a></li>
         </ul>
       </drop-down>
     </div>
   </div>
   <div>
-    <input name="subject" placeholder="Subject" class="full">
+    <input name="subject" placeholder="Subject" class="full" ng-model="message.subject" ng-focus="focusSection('subject')">
   </div>
   <div>
-    <textarea name="body" placeholder="Body"></textarea>
+    <textarea name="body" placeholder="Body" ng-model="message.body" ng-focus="focusSection('body')"></textarea>
   </div>
   <div class="footer">
-    <input type="submit" value="Send" class="btn primary-btn">
+    <input type="submit" value="Send" class="btn primary-btn" ng-click="send()">
   </div>
 </div>
-<div class="flash">
-  <div class="inner">Sending...</div>
+<div class="flash" ng-class="{ active: app_state.flash.length > 0 }">
+  <div class="inner">{{ app_state.flash }}</div>
 </div>
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
@@ -135,6 +133,25 @@ window.currentUser = {
   last_name: 'Brown',
   avatar: 'me.jpg'
 }
+window.currentAccounts = [{
+  id: 1,
+  email: "markbrown4@gmail.com",
+  first_name: "Mark",
+  last_name: "Brown",
+  avatar: "me.jpg"
+},{
+  id: 2,
+  email: "mark@inspire9.com",
+  first_name: "Mark",
+  last_name: "Brown",
+  avatar: "me.jpg"
+},{
+  id: 3,
+  email: "mark@adioso.com",
+  first_name: "Mark",
+  last_name: "Brown",
+  avatar: "me.jpg"
+}]
 </script>
 </body>
 </html>

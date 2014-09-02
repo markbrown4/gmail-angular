@@ -55,7 +55,7 @@
     <a href class="btn" ng-show="isRouteActive('/inbox') && noneSelected()"><img src="images/icons/refresh.png"></a>
   </div>
   <div id="nav">
-    <a href="#/compose" class="compose">COMPOSE</a>
+    <a href class="compose" ng-click="newMessage.composing = true">COMPOSE</a>
     <ul>
       <li class="active"><a href="#/inbox">Inbox</a></li>
       <li><a href="#/sent">Sent Mail</a></li>
@@ -65,9 +65,9 @@
   </div>
   <div id="content" ng-view></div>
 </div>
-<div id="compose" style="display: none">
+<div id="compose" ng-controller="NewMessageController" ng-show="newMessage.composing">
   <div class="header">
-    <a class="close">&times;</a>
+    <a class="close" ng-click="newMessage.composing = false">&times;</a>
     <h2>New Message</h2>
   </div>
   <div>

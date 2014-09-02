@@ -1,8 +1,9 @@
 
-app.controller 'ThreadsController', ($scope, Thread, $location)->
+app.controller 'ThreadsController', ($scope, Thread, $location, NewMessage)->
   $scope.threads = []
   Thread.query (threads)->
     $scope.threads = threads
+    $scope.newMessage = NewMessage
     $scope.page =
       from: 1
       to: threads.length
@@ -59,3 +60,9 @@ app.controller 'ThreadController', ($scope, $routeParams, Thread)->
   $scope.toggleActive = (message)->
     unless message == $scope.lastMessage
       message.active = !message.active
+
+app.factory 'NewMessage', ->
+  composing: false
+
+app.controller 'NewMessageController', ($scope, NewMessage)->
+  $scope.newMessage = NewMessage

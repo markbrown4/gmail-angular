@@ -8,17 +8,10 @@ app.directive 'stopEvent', ->
 
 app.directive "dropDown", ->
   restrict: 'E'
-  link: (scope, element, attrs, dropdownCtrl)->
-    dropdownCtrl.init element
-  controller: ->
-    @init = (element)->
-      element.bind 'click', @toggle
-
-    @toggle = (event)->
+  link: (scope, element, attrs)->
+    element.bind 'click', ->
       event.preventDefault()
       angular.element(this).toggleClass 'active'
-
-    return this
 
 app.directive 'focusWhen', ($timeout)->
   link: (scope, element, attrs)->

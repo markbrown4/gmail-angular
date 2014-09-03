@@ -55,7 +55,9 @@ app.controller 'ThreadsController', ($rootScope, $scope, Thread, $location)->
     $rootScope.$broadcast 'composeMessage'
 
 app.controller 'ThreadController', ($scope, $routeParams, Thread)->
-  $scope.thread = Thread.get { id: $routeParams.id }, (thread)->
+  $scope.thread = {}
+  Thread.get { id: $routeParams.id }, (thread)->
+    $scope.thread = thread
     $scope.lastMessage = thread.messages[thread.messages.length-1]
     $scope.lastMessage.active = true
 
@@ -88,7 +90,6 @@ app.controller 'ComposeController', ($rootScope, $scope, $timeout, Flash)->
     $timeout ->
       Flash.message = ''
     , 1000
-
 
 app.controller 'FlashController',  ($scope, Flash)->
   $scope.flash = Flash

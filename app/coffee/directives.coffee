@@ -20,3 +20,9 @@ app.directive "dropDown", ->
 
     return this
 
+app.directive 'focusWhen', ($timeout)->
+  link: (scope, element, attrs)->
+    scope.$watch attrs.focusWhen, (value)->
+      return unless value
+      $timeout ->
+        element[0].focus()

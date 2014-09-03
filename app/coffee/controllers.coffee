@@ -1,5 +1,5 @@
 
-app.controller 'ThreadsController', ($scope, Thread, $location)->
+app.controller 'ThreadsController', ($rootScope, $scope, Thread, $location)->
   $scope.threads = []
   Thread.query (threads)->
     $scope.threads = threads
@@ -51,6 +51,9 @@ app.controller 'ThreadsController', ($scope, Thread, $location)->
     else
       $scope.selectAll()
 
+  $scope.composeMessage = ->
+    $rootScope.$broadcast 'composeMessage'
+
 app.controller 'ThreadController', ($scope, $routeParams, Thread)->
   $scope.thread = Thread.get { id: $routeParams.id }, (thread)->
     $scope.lastMessage = thread.messages[thread.messages.length-1]
@@ -60,23 +63,33 @@ app.controller 'ThreadController', ($scope, $routeParams, Thread)->
     unless message == $scope.lastMessage
       message.active = !message.active
 
-app.controller 'ComposeController', ($scope, AppState, $timeout)->
-  @reset = ->
+app.controller 'ComposeController', ($rootScope, $scope, $timeout, Flash)->
+
+  $scope.close = ->
+    $scope.visible = false
+    $scope.cc_active = false
+    $scope.bcc_active = false
+    $scope.active_section = null
+    $scope.message =
+      from: currentAccounts[0]
+
+  $scope.close()
+
+  $rootScope.$on 'composeMessage', ->
+    $scope.visible = true
     $scope.active_section = 'to'
     $scope.message =
       from: currentAccounts[0]
 
-  @reset()
+  $scope.send = ->
+    $scope.visible = false
+    reset()
 
-  $scope.focusSection = (section)->
-    $scope.active_section = section
-    $scope.$broadcast "#{section}Focused"
-
-  $scope.send = =>
-    AppState.composing = false
-    @reset()
-    AppState.flash = 'Sending...'
+    Flash.message = 'Sending...'
     $timeout ->
-      AppState.flash = ''
+      Flash.message = ''
     , 1000
 
+
+app.controller 'FlashController',  ($scope, Flash)->
+  $scope.flash = Flash

@@ -7,7 +7,6 @@ app.config ($routeProvider)->
       templateUrl: 'partials/threads.html'
     .when '/threads/:id',
       templateUrl: 'partials/thread.html'
-      controller: 'ThreadController'
     .otherwise
       redirectTo: '/inbox'
 

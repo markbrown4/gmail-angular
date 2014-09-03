@@ -3,8 +3,4 @@ app.factory 'Flash', ->
   message: ''
 
 app.factory 'Thread', ($resource)->
-  $resource '/api/threads/:id.json', {},
-    query:
-      method: 'GET'
-      params: { id: 'index' }
-      isArray: true
+  $resource '/api/threads/:id.json', { id: 'index' }

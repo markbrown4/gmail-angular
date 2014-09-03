@@ -1,4 +1,4 @@
-<div id="thread">
+<div id="thread" ng-controller="ThreadController">
   <h1>{{ thread.messages[0].subject }}</h1>
   <ul class="messages">
     <li ng-repeat="message in thread.messages" ng-class="{ active : message.active }" ng-click="toggleActive(message)">

@@ -82,8 +82,7 @@ app.controller 'ComposeController', ($rootScope, $scope, $timeout, Flash)->
       from: currentAccounts[0]
 
   $scope.send = ->
-    $scope.visible = false
-    reset()
+    $scope.close()
 
     Flash.message = 'Sending...'
     $timeout ->

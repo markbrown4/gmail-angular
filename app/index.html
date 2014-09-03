@@ -74,21 +74,21 @@
     </div>
     <div ng-show="active_section == 'to'">
       <div class="input" ng-show="active_section == 'to'">
-        <label>To</label>
+        <label for="message_to">To</label>
         <div class="fit">
-          <input name="to" class="full" ng-model="message.to" focus-when="active_section == 'to'">
+          <input id="message_to" class="full" ng-model="message.to" focus-when="active_section == 'to'">
         </div>
       </div>
       <div class="input" ng-show="cc_active">
-        <label>Cc</label>
+        <label for="message_cc">Cc</label>
         <div class="fit">
-          <input name="cc" class="full" ng-model="message.cc" focus-when="cc_active">
+          <input id="message_cc" class="full" ng-model="message.cc" focus-when="cc_active">
         </div>
       </div>
       <div class="input" ng-show="bcc_active">
-        <label>Bcc</label>
+        <label for="message_bcc">Bcc</label>
         <div class="fit">
-          <input name="bcc" class="full" ng-model="message.bcc" focus-when="bcc_active">
+          <input for="message_bcc" class="full" ng-model="message.bcc" focus-when="bcc_active">
         </div>
       </div>
       <div>
@@ -106,10 +106,10 @@
     </div>
   </div>
   <div>
-    <input name="subject" placeholder="Subject" class="full" ng-model="message.subject" ng-focus="active_section = 'subject'">
+    <input id="message_subject" placeholder="Subject" class="full" ng-model="message.subject" ng-focus="active_section = 'subject'">
   </div>
   <div>
-    <textarea name="body" placeholder="Body" ng-model="message.body" ng-focus="active_section = 'body'"></textarea>
+    <textarea id="message_body" placeholder="Body" ng-model="message.body" ng-focus="active_section = 'body'"></textarea>
   </div>
   <div class="footer">
     <input type="submit" value="Send" class="btn primary-btn" ng-click="send()">

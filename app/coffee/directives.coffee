@@ -9,7 +9,7 @@ app.directive 'stopEvent', ->
 app.directive "dropDown", ->
   restrict: 'E'
   link: (scope, element, attrs)->
-    element.bind 'click', ->
+    element.bind 'click', (event)->
       event.preventDefault()
       angular.element(this).toggleClass 'active'
 

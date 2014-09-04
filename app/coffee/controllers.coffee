@@ -73,7 +73,7 @@ app.controller 'ComposeController', ($rootScope, $scope, $timeout, Flash)->
     $scope.bcc_active = false
     $scope.active_section = null
     $scope.message =
-      from: currentAccounts[0]
+      from: currentUser.accounts[0]
 
   $scope.close()
 
@@ -81,7 +81,7 @@ app.controller 'ComposeController', ($rootScope, $scope, $timeout, Flash)->
     $scope.visible = true
     $scope.active_section = 'to'
     $scope.message =
-      from: currentAccounts[0]
+      from: currentUser.accounts[0]
 
   $scope.send = ->
     $scope.close()

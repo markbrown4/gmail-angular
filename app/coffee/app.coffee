@@ -12,4 +12,3 @@ app.config ($routeProvider)->
 
 app.run ($rootScope)->
   $rootScope.current_user = currentUser
-  $rootScope.current_accounts = currentAccounts

@@ -11,9 +11,9 @@
   <div id="header">
     <span id="logo"><img src="images/logo.png"></span>
     <drop-down class="drop-down account-nav">
-      <img class="avatar" ng-src="images/avatars/{{ current_accounts[0].avatar }}">
+      <img class="avatar" ng-src="images/avatars/{{ current_user.accounts[0].avatar }}">
       <ul class="align-right">
-        <li ng-repeat="account in current_accounts"><a href>{{ account | nameAndEmail }}</a></li>
+        <li ng-repeat="account in current_user.accounts"><a href>{{ account | nameAndEmail }}</a></li>
       </ul>
     </drop-down>
     <form class="search">
@@ -99,7 +99,7 @@
           <span>{{ message.from | nameAndEmail }}</span>
           <img src="images/icons/down.png">
           <ul class="align-right">
-            <li ng-repeat="account in current_accounts"><a href ng-click="message.from = account">{{ account | nameAndEmail }}</a></li>
+            <li ng-repeat="account in current_user.accounts"><a href ng-click="message.from = account">{{ account | nameAndEmail }}</a></li>
           </ul>
         </drop-down>
       </div>
@@ -132,27 +132,27 @@ window.currentUser = {
   email: 'markbrown4@gmail.com',
   first_name: 'Mark',
   last_name: 'Brown',
-  avatar: 'me.jpg'
+  avatar: 'me.jpg',
+  accounts: [{
+    id: 1,
+    email: "markbrown4@gmail.com",
+    first_name: "Mark",
+    last_name: "Brown",
+    avatar: "me.jpg"
+  },{
+    id: 2,
+    email: "mark@inspire9.com",
+    first_name: "Mark",
+    last_name: "Brown",
+    avatar: "me.jpg"
+  },{
+    id: 3,
+    email: "mark@adioso.com",
+    first_name: "Mark",
+    last_name: "Brown",
+    avatar: "me.jpg"
+  }]
 };
-window.currentAccounts = [{
-  id: 1,
-  email: "markbrown4@gmail.com",
-  first_name: "Mark",
-  last_name: "Brown",
-  avatar: "me.jpg"
-},{
-  id: 2,
-  email: "mark@inspire9.com",
-  first_name: "Mark",
-  last_name: "Brown",
-  avatar: "me.jpg"
-},{
-  id: 3,
-  email: "mark@adioso.com",
-  first_name: "Mark",
-  last_name: "Brown",
-  avatar: "me.jpg"
-}];
 </script>
 </body>
 </html>

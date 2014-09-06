@@ -40,7 +40,6 @@ li {
   position: fixed;
   top: 46px;
   left: 50%;
-  display: none;
   .inner {
     white-space: nowrap;
     left: -50%;
@@ -50,9 +49,6 @@ li {
     padding: 5px 10px;
     border-radius: 3px;
     box-shadow: 0 2px 2px rgba(#000, .1);
-  }
-  &.active {
-    display: block;
   }
 }
 

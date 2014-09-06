@@ -115,7 +115,7 @@
     <input type="submit" value="Send" class="btn primary-btn" ng-click="send()">
   </div>
 </div>
-<div class="flash" ng-class="{ active: flash.message.length > 0 }" ng-controller="FlashController">
+<div class="flash" ng-controller="FlashController" ng-show="flash.message.length > 0">
   <div class="inner">{{ flash.message }}</div>
 </div>
 <script src="bower_components/angular/angular.js"></script>

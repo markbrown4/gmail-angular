@@ -12,6 +12,7 @@
     "gulp-coffee": "*",
     "gulp-sass": "*",
     "gulp-autoprefixer": "*",
+    "gulp-uglify": "*",
     "http-server": "*"
   },
   "scripts": {

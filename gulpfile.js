@@ -5,6 +5,7 @@ var gutil = require('gulp-util');
 var coffee = require('gulp-coffee');
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
+var uglify = require('gulp-uglify');
 
 var paths = {
   styles: {

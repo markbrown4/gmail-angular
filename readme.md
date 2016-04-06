@@ -6,9 +6,9 @@ What better example of a rich client-side application than Gmail, the iconic web
 
 In this tutorial we'll explain all of the important components of Angular - Modules, Controllers, Scopes, Directives, Services and Filters whilst building out a Gmail clone.  No prior knowledge of Angular is necessary.
 
-[Screencast](http://youtu.be/1P2lPfJejek) - Click Watch on YouTube and bump up the quality to 720p for better viewing.
+[Screencast](http://youtu.be/1P2lPfJejek) - Bump up the quality to 720p for better viewing.
 
-## Prerequisites
+### Prerequisites
 
 You'll need npm installed and an intermediate knowledge of JavaScript and a tolerance or love of CoffeeScript.
 
@@ -27,7 +27,7 @@ In a separate process watch our assets for changes
 npm run assets
 ```
 
-Hit http://localhost:8000/ in your favourite browser and you should see a bunch of familiar Gmail elements on the screen - you'll be bringing that static page to life and responding to events, just like Pinocchio.
+Hit [http://localhost:8000/](http://localhost:8000/) in your favourite browser and you should see a bunch of familiar Gmail elements on the screen - you'll be bringing that static page to life and responding to events, just like Pinocchio.
 
 If you're not familiar with Bower, it simply downloads the dependencies listed in bower.json into the bower_components/ directory.  These are already included in scripts at the bottom of index.html
 
@@ -65,7 +65,7 @@ After loading the title in the browser should read nGmail 4!
 
 These expressions in double curly braces are auto updated bindings that are evaluated whenever the underlying data changes, you'll be using these whenever you want to dynamically produce a value in the HTML.
 
-## Modules
+### Modules
 
 Modules are a way to group related controllers, directives and services together.  Let's start by creating a module for our application and adding the name to the ng-app attribute we added earlier.  angular.module takes 2 arguments, a name and an array of dependencies, which we don't require just yet.
 
@@ -172,7 +172,7 @@ To confirm this is working update one of the last messages in our JSON with a fr
 }
 ```
 
-**Boom.**
+Boom.
 
 Gmail applies different styles to the thread and names if there's unread messages, let's apply these via the `ng-class` directive
 
@@ -227,9 +227,9 @@ window.currentUser = {
 </body>
 ```
 
-We could use $http to fetch the current signed in user but it's best to bootstrap core data like this on page load as the page is useless without it, why wait for a second response before we can make the page do something? Global variables are rightfully frowned upon but I make an exception with things like this as I do want to be to access them globally.
+We could use `$http` to fetch the current signed in user but it's best to bootstrap core data like this on page load as the page is useless without it, why wait for a second response before we can make the page do something? Global variables are rightfully frowned upon but I make an exception with things like this as I do want to be to access them globally.
 
-Let's make another filter called smartName to apply our logic.
+Let's make another filter called `smartName` to apply our logic.
 
 ```coffee
 app.filter 'smartName', ->
@@ -242,7 +242,7 @@ app.filter 'smartName', ->
       person.first_name
 ```
 
-In the view we'll use our smartName filter, passing through true if the threads message_count is 1
+In the view we'll use our `smartName` filter, passing through true if the threads `message_count` is 1
 
 ```html
 <span class="people">
@@ -317,7 +317,7 @@ By default the routing will use the hash, we can easily make the router use push
 <li class="active"><a href="#/inbox">Inbox</a></li>
 ```
 
-The thread detail view controller will need the $routeParams service so we can fetch the dynamic :id from our route.
+The thread detail view controller will need the `$routeParams` service so we can fetch the dynamic :id from our route.
 
 *controllers.coffee*
 
@@ -387,7 +387,7 @@ The reason for this is that the browser is requesting the image at "images/avata
 <img src="images/avatars/{{ message.from.avatar }}">
 ```
 
-We need to change these src attributes to ng-src which is specifically there to solve this problem.
+We need to change these `src` attributes to `ng-src` which is specifically there to solve this problem.
 
 ```html
 <img ng-src="images/avatars/{{ message.from.avatar }}" class="avatar">
@@ -397,7 +397,7 @@ We need to change these src attributes to ng-src which is specifically there to 
 
 No more 404's.
 
-Let's add one more filter for handling the timeAgo
+Let's add one more filter for handling the `timeAgo`
 
 ```coffee
 app.filter 'timeAgo', ($filter)->
@@ -427,7 +427,7 @@ And update the view accordingly
 <time>{{ message.created_at | smartDate }} ({{ message.created_at | timeAgo }})</time>
 ```
 
-Different parts of this view are visible when the message is active, let's toggle this value using a new method we'll place on the $scope.
+Different parts of this view are visible when the message is active, let's toggle this value using a new method we'll place on the `$scope`.
 
 ```html
 <li ng-repeat="message in thread.messages" ng-class="{ active : message.active }" ng-click="toggleActive(message)">
@@ -454,7 +454,7 @@ Nice!  We can now click between our inbox and specific thread, fetch data from o
 
 We did manage to break something by adding links to our threads though, the checkboxes 🙁
 
-When you click on a checkbox it toggles and then follows the parent link, let's make a custom directive stopEvent which will prevent the event moving up to the parent link.
+When you click on a checkbox it toggles and then follows the parent link, let's make a custom directive `stopEvent` which will prevent the event moving up to the parent link.
 
 *directives.coffee*
 
@@ -467,11 +467,11 @@ app.directive 'stopEvent', ->
       event.stopPropagation()
 ```
 
-The whacky restrict: 'A' limits this directive to Attributes, we'll look at Elements next.
+The whacky "restrict: 'A'" limits this directive to <b>A</b>ttributes, we'll look at <b>E</b>lements next.
 
 The link function fires just after the element is added to the DOM so it's safe to mess with.
 
-We can now start sprinkling our new stop-event attribute anywhere in the document we want this behavior to occur, note the normalised casing for both the directive name and attribute.
+We can now start sprinkling our new `stop-event` attribute anywhere in the document we want this behavior to occur, note the normalised casing for both the directive name and attribute.
 
 ```html
 <span class="check" ng-click="thread.selected = !thread.selected" stop-event></span>
@@ -510,7 +510,7 @@ app.directive 'dropDown', ->
       angular.element(this).toggleClass 'active'
 ```
 
-angular.element delegates to jQuery if present, or in our case uses their own mini jQuery alternative jqLite, jqLite is a really nice option if you don't need the whole hog - it only includes a very small subset of the features so it's not a drop-in replacement (https://code.google.com/p/jqlite/wiki/UsingJQLite)
+`angular.element` delegates to jQuery if present, or in our case uses their own mini jQuery alternative *jqLite*, jqLite is a really nice option if you don't need the whole hog - it only includes a very small subset of the features so it's not a drop-in replacement (https://code.google.com/p/jqlite/wiki/UsingJQLite)
 
 You could use jQuery to do something similar though, and if this was all the drop down element was doing there's not much difference between them.
 
@@ -520,7 +520,7 @@ $(document.body).on 'click', '.drop-down', (event)->
   $(event.target).closest('.drop-down').toggleClass 'active'
 ```
 
-Directives give you a lot more power than what we're demonstrating here though, they allow access to $scope, can evaluate expressions on attributes and watch for changes to make updates i.e they make the element place nicely with the rest of Angular.  Any time you'd consider using jQuery for updating the DOM and responding to user events you should first consider using a directive.
+Directives give you a lot more power than what we're demonstrating here though, they allow access to `$scope`, can evaluate expressions on attributes and watch for changes to make updates i.e they make the element place nicely with the rest of Angular.  Any time you'd consider using jQuery for updating the DOM and responding to user events you should first consider using a directive.
 
 Here's a full featured drop down directive using the angular patterns if you're interested - https://github.com/angular-ui/bootstrap/blob/master/src/dropdown/dropdown.js
 
@@ -538,14 +538,14 @@ We'll use the `ngResource` service to work with our Models, let's first add the 
 window.app = angular.module('nGmail', ['ngRoute', 'ngSanitize', 'ngResource'])
 ```
 
-Models in our application will be singletons so we'll use a factory.  In services.coffee make a Thread factory responsible for querying our API through ngResource. The second parameter to $resource is a list of default params that can be overridden in the query and get methods.
+Models in our application will be singletons so we'll use a factory.  In `services.coffee` make a `Thread` factory responsible for querying our API through `ngResource`. The second parameter to `$resource` is a list of default params that can be overridden in the query and get methods.
 
 ```coffee
 app.factory 'Thread', ($resource)->
   $resource '/api/threads/:id.json', { id: 'index' }
 ```
 
-Then working with our models becomes considerably nicer in our controllers.  We just pass in Thread as a dependency and can then call methods like query and get to fetch our threads. Sweet.
+Then working with our models becomes considerably nicer in our controllers.  We just pass in `Thread` as a dependency and can then call methods like query and get to fetch our threads. Sweet.
 
 ```coffee
 app.controller 'ThreadsController', ($scope, Thread)->
@@ -662,7 +662,7 @@ app.controller 'ThreadsController', ($scope, Thread)->
       $scope.selectAll()
 ```
 
-Let's use all of these in the view, only showing the dropdown if it's the /inbox route
+Let's use all of these in the view, only showing the dropdown if it's the `/inbox` route
 
 ```html
 <drop-down class="drop-down btn" ng-show="isRouteActive('/inbox')">
@@ -677,7 +677,7 @@ Let's use all of these in the view, only showing the dropdown if it's the /inbox
 </drop-down>
 ```
 
-The next three buttons we only want to show if any threads are selected, the refresh button we only show if it's the /index route and no threads are selected.
+The next three buttons we only want to show if any threads are selected, the refresh button we only show if it's the `/index` route and no threads are selected.
 
 ```html
 <div class="split-btn" ng-show="someSelected()">
@@ -690,7 +690,7 @@ The next three buttons we only want to show if any threads are selected, the ref
 
 Nice.
 
-## Search
+### Search
 
 It's a little bit silly to implement a search without a backend but implementing a client-side search gives us a chance to look at two new features so we'll do it.
 
@@ -698,7 +698,7 @@ It's a little bit silly to implement a search without a backend but implementing
 <input name="query" ng-model="query">
 ```
 
-The ng-model directive saves the value of a form element on the current $scope, so we can pass it into a built in filter named.. filter which will do a fuzzy search on the data.
+The `ng-model` directive saves the value of a form element on the current `$scope`, so we can pass it into a built in filter named.. `filter` which will do a fuzzy search on the data.
 
 ```html
 <li ng-repeat="thread in threads | filter : query">
@@ -723,7 +723,7 @@ app.controller 'ComposeController', ($scope)->
   $scope.visible = false
 ```
 
-Now, things get interesting here because the compose button that launches this sits outside of this controllers scope, we need a way to communicate across controllers.  There's a few ways to do this, one way is through events on $rootScope, or passing in a shared object(a service) as dependencies to both controllers.
+Now, things get interesting here because the compose button that launches this sits outside of this controllers scope, we need a way to communicate across controllers.  There's a few ways to do this, one way is through events on `$rootScope`, or passing in a shared object(a service) as dependencies to both controllers.
 
 *index.html*
 
@@ -731,7 +731,7 @@ Now, things get interesting here because the compose button that launches this s
 <a href class="compose" ng-click="composeMessage()">COMPOSE</a>
 ```
 
-We'll look at using events first, include $rootScope as a dependency and $broadcast our event when the button is clicked.
+We'll look at using events first, include `$rootScope` as a dependency and `$broadcast` our event when the button is clicked.
 
 *controllers.coffee*
 
@@ -772,7 +772,7 @@ app.controller 'ComposeController', ($rootScope, $scope)->
     $scope.visible = false
 ```
 
-As a second example of cross controller messaging let's wire up a Flash that we can push messages like "Sending..." to and display at the top of the page.  We'll be using a simple singleton object Flash which we can pass around and different parts of the app can set it's message.
+As a second example of cross controller messaging let's wire up a Flash that we can push messages like "Sending..." to and display at the top of the page.  We'll be using a simple singleton object `Flash` which we can pass around and different parts of the app can set it's message.
 
 *services.coffee*
 
@@ -825,7 +825,7 @@ app.controller 'ComposeController', ($rootScope, $scope, Flash, $timeout)->
 
 Now it displays the message and clears itself after a second, Nice.
 
-The completed compose view looks this, we've added ng-model to our inputs, conditionally displayed sections depending on the active one, you can see how that's wired up below.
+The completed compose view looks this, we've added `ng-model` to our inputs, conditionally displayed sections depending on the active one, you can see how that's wired up below.
 
 ```html
 <div id="compose" ng-controller="ComposeController" ng-show="visible">
@@ -882,7 +882,7 @@ The completed compose view looks this, we've added ng-model to our inputs, condi
 </div>
 ```
 
-This view uses a new filter called nameAndEmail for formatting this common string.
+This view uses a new filter called `nameAndEmail` for formatting this common string.
 
 *filters.coffee*
 

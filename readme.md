@@ -1,7 +1,5 @@
 # nGmail
 
-An Angular tutorial building out a Gmail clone.
-
 What better example of a rich client-side application than Gmail, the iconic web app that started it all.
 
 In this tutorial we'll explain all of the important components of Angular - Modules, Controllers, Scopes, Directives, Services and Filters whilst building out a Gmail clone.  No prior knowledge of Angular is necessary.
